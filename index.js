@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 app.set('view engine', 'jade');
-app.engine('html', require('ejs').renderFile);
+app.engine('html', require('jade').renderFile);
 
 app.get('/', (req, res, next) => {
   res.send('Hello World');
