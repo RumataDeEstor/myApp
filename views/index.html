@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ALINA</title> 
+  </head>
+<body>
+  <div id = "dv">Алина клёвая ;)</div>
+  <div id = "dv2"> Однозначно! </div>
+  <div id = "content"> </div>
+  <button id = "btn0"> Жми меня! </button>
+  <script>
+  	var btn = document.getElementById("btn0");
+	btn.addEventListener("click", click);
+
+	window.addEventListener("popstate", function(e) {
+		console.log("popstate detected");
+    					request(location.pathname);
+					}, false)
+	function click () {		
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', '/user/1', true);
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					var stateObj = {};
+					create(xhr.responseText);	
+					history.pushState(stateObj, "", "./1");									
+				} else {
+					alert (xhr.status + "hmmm..." + xhr.statusText);
+				}
+			}
+		}	
+		xhr.send();
+	}
+	function request (href) {
+		console.log(href);
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', href, true);
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					create(xhr.responseText);
+				}
+			}
+		}
+		xhr.send();			
+	}
+	function create (text) {
+		document.body.innerHTML = text;
+	}
+  </script>
+</body>
+</html>
+
