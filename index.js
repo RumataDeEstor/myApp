@@ -4,7 +4,7 @@ app.set('view engine', 'jade');
 app.engine('html', require('ejs').renderFile);
 
 app.get('/', (req, res, next) => {
-  res.render('index.html');
+  res.send('Hello World');
 });
 app.get('/user/:id', (req, res, next) => {
   res.send(`${req.params.id} user page.`);
